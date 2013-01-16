@@ -34,19 +34,30 @@
         android:label="Tests for net.comapctsys.androlib.samples"/>
     
     <application
+        android:name=".MyApplication"
         android:label="@string/app_name"
         android:icon="@drawable/ic_launcher">
+
+        <uses-library android:name="android.test.runner" />
+
         <activity
-            android:name="MyActivity"
+            android:name="MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
-        <uses-library android:name="android.test.runner" />
+
+        <activity android:name=".widgets.CheckableLayoutActivity"
+                  android:label="@string/activity_checkablelayout">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="net.compactsys.intent.category.ANDROLIB_SAMPLE" />
+            </intent-filter>
+        </activity>
+
+
         
     </application>
-
 </manifest>

@@ -16,7 +16,5 @@
   -->
 
 <resources>
-    <string name="app_name">AndroLib-Samples</string>
-    <string name="activity_checkablelayout">Widgets/CheckableLayout</string>
-    <string name="planet_description">"Planet description can be placed here"</string>
+    <color name="background_layout_checked">#ff165eab</color>
 </resources>
