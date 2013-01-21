@@ -23,7 +23,7 @@ import net.compactsys.androlib.util.DateUtils;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TestDataUtils extends AndroidTestCase {
+public class TestDateUtils extends AndroidTestCase {
 
     public void testDates() {
 
