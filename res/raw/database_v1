@@ -1,0 +1,47 @@
+/* Testing Database */
+/* SQLParser
+    Comments will be
+    ignored  */
+
+CREATE TABLE suppliers
+( supplier_id number(10) not null,
+  supplier_name varchar2(50) not null,
+  city varchar2(50),
+  CONSTRAINT suppliers_pk PRIMARY KEY (supplier_id)
+);
+
+INSERT INTO suppliers (supplier_id, supplier_name, city)
+VALUES (5001, 'Microsoft', 'New York');
+
+INSERT INTO suppliers (supplier_id, supplier_name, city)
+VALUES (5002, 'IBM', 'Chicago');
+
+INSERT INTO suppliers (supplier_id, supplier_name, city)
+VALUES (5003, 'Red Hat', 'Detroit');
+
+INSERT INTO suppliers (supplier_id, supplier_name, city)
+VALUES (5005, 'NVIDIA', 'LA');
+-- this is a comment also
+CREATE TABLE customers
+( customer_id number(10) not null,
+  customer_name varchar2(50) not null,
+  city varchar2(50),
+  CONSTRAINT customers_pk PRIMARY KEY (customer_id)
+);
+
+INSERT INTO customers (customer_id, customer_name, city)
+VALUES (7001, 'Microsoft', 'San Francisco');
+
+INSERT INTO customers (customer_id, customer_name, city)
+VALUES (7002, 'IBM', 'Toronto');
+
+INSERT INTO customers (customer_id, customer_name, city)
+VALUES (7003, 'Red Hat', 'Newark');
+
+UPDATE suppliers
+SET city = (SELECT customers.city
+            FROM customers
+            WHERE customers.customer_name = suppliers.supplier_name)
+WHERE EXISTS (SELECT customers.city
+              FROM customers
+              WHERE customers.customer_name = suppliers.supplier_name);
