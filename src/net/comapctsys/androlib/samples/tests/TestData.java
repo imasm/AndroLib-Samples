@@ -14,25 +14,32 @@
  * limitations under the License.
  */
 
-package net.comapctsys.androlib.samples;
+package net.comapctsys.androlib.samples.tests;
 
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 
+import net.comapctsys.androlib.samples.DbHelper;
+import net.comapctsys.androlib.samples.MyApplication;
+import net.comapctsys.androlib.samples.R;
 import net.compactsys.androlib.data.SQLParser;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class TestData extends AndroidTestCase {
 
-    public void testSqlParser() throws IOException {
+    public static String[] getSqlStatements() throws IOException
+    {
         Resources res = MyApplication.getInstance().getResources();
         InputStream ins = res.openRawResource(R.raw.database_v1);
         BufferedReader br = new BufferedReader(new InputStreamReader(ins));
-        String[] sqlstrings = SQLParser.parseSqlFile(br);
+        return SQLParser.parseSqlFile(br);
+    }
+
+    public void testSqlParser() throws IOException {
+
+        String[] sqlstrings = getSqlStatements();
 
         assertTrue(sqlstrings.length == 10);
 
@@ -46,5 +53,15 @@ public class TestData extends AndroidTestCase {
             assertTrue(sqlstrings[i].startsWith("INSERT INTO customers"));
 
         assertTrue(sqlstrings[9].startsWith("UPDATE suppliers"));
+    }
+
+    public void testCreateDatabase() throws IOException {
+        File dbFile = getContext().getDatabasePath(DbHelper.DATABASE_NAME);
+        if (dbFile.exists())
+            dbFile.delete();
+
+        DbHelper dbHelper = new DbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        db.close();
     }
 }
