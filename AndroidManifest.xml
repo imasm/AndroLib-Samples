@@ -57,6 +57,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".apps.DialogsActivity"
+            android:label="@string/activity_dialogs">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="net.compactsys.intent.category.ANDROLIB_SAMPLE" />
+            </intent-filter>
+        </activity>
 
         
     </application>

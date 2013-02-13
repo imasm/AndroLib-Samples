@@ -18,5 +18,14 @@
 <resources>
     <string name="app_name">AndroLib-Samples</string>
     <string name="activity_checkablelayout">Widgets/CheckableLayout</string>
+    <string name="activity_dialogs">Apps/DialogsActivity</string>
+
     <string name="planet_description">"Planet description can be placed here"</string>
+    <string name="label_demo_progress_dialog_fragment">Test ProgressDialogFragment</string>
+    <string name="btn_demo_progress_dialog_fragment">Show progress</string>
+    <string name="progress_title">Progress</string>
+    <string name="progress_waiting">Waiting…</string>
+    <string name="btn_demo_multichoice_dialog_fragment">MultiChoice</string>
+    <string name="label_demo_multichoice_dialog_fragment">Multiselect Dialog</string>
+    <string name="multichoice_title">MultiChoice Dialog</string>
 </resources>
