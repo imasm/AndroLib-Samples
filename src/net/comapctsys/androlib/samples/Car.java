@@ -19,12 +19,14 @@ package net.comapctsys.androlib.samples;
 import java.util.ArrayList;
 
 public class Car {
+    private long mId;
     private String mLicense;
     private String mModel;
     private int mYear;
 
-    public static Car create(String license, String model, int year) {
+    public static Car create(long id, String license, String model, int year) {
         Car c = new Car();
+        c.setId(id);
         c.setLicense(license);
         c.setModel(model);
         c.setYear(year);
@@ -34,13 +36,21 @@ public class Car {
 
     public static ArrayList<Car> createDemo() {
         ArrayList<Car> list = new ArrayList<Car>();
-        list.add(Car.create("X-2545-HGF", "Seat Ibiza", 2003));
-        list.add(Car.create("F-2345-BAR", "Toyota Verso", 2010));
-        list.add(Car.create("V-2234-FRE", "volkswagen Polo", 2001));
+        list.add(Car.create(0, "X-2545-HGF", "Seat Ibiza", 2003));
+        list.add(Car.create(1, "F-2345-BAR", "Toyota Verso", 2010));
+        list.add(Car.create(2, "V-2234-FRE", "volkswagen Polo", 2001));
         return list;
     }
 
     public Car() {
+    }
+
+    public long getId() {
+        return mId;
+    }
+
+    public void setId(long id) {
+        mId = id;
     }
 
     public String getLicense() {

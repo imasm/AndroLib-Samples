@@ -62,6 +62,11 @@ public class CarsArrayAdapter extends ArrayAdapter<Car>
         }
 
         @Override
+        public long getItemId(int position) {
+            return super.getItemId(position);
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent)
         {
             View rowview = convertView;

@@ -18,10 +18,14 @@ package net.comapctsys.androlib.samples.apps;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import net.comapctsys.androlib.samples.Car;
 import net.comapctsys.androlib.samples.CarsArrayAdapter;
@@ -81,7 +85,34 @@ public class DialogsActivity extends Activity {
             case R.id.btn_demo_multichoice_dialog_fragment:
 
                 title = getString(R.string.multichoice_title);
-                MultiChoiceDialogFragment mdf = MultiChoiceDialogFragment.newInstance(title, false);
+                final MultiChoiceDialogFragment mdf = MultiChoiceDialogFragment.newInstance(title, false);
+
+                mdf.setPositiveButton(getString(R.string.select), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ListView lv = mdf.getListView();
+                        String result = "Selected items: ";
+                        if (lv != null) {
+                            SparseBooleanArray sba = lv.getCheckedItemPositions();
+                            for (int i = 0; i < sba.size(); i++) {
+                                if (sba.valueAt(i)) {
+                                     result += sba.keyAt(i) + ",";
+                                }
+                            }
+                        }
+
+                        Toast.makeText(DialogsActivity.this, result, Toast.LENGTH_LONG).show();
+
+                        mdf.dismiss();
+                    }
+                });
+
+                mdf.setNegativeeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mdf.dismiss();
+                    }
+                });
 
                 mdf.setAdapter(new CarsArrayAdapter(this, R.layout.multichoice_car_item, Car.createDemo()));
 

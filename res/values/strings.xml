@@ -28,4 +28,6 @@
     <string name="btn_demo_multichoice_dialog_fragment">MultiChoice</string>
     <string name="label_demo_multichoice_dialog_fragment">Multiselect Dialog</string>
     <string name="multichoice_title">MultiChoice Dialog</string>
+    <string name="select">Select</string>
+    <string name="cancel">Cancel</string>
 </resources>
